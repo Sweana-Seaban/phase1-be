@@ -20,6 +20,7 @@ class AuthController extends Controller
         $fields=$request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
+            'username' => 'required|string|unique:users,username',
             'email' => 'required|string|unique:users,email',
             'password' => 'required|string|confirmed'
         ]);
@@ -28,6 +29,7 @@ class AuthController extends Controller
             'first_name' => $fields['first_name'],
             'last_name' => $fields['last_name'],
             'email' => $fields['email'],
+            'username' => $fields['username'],
             'password' => bcrypt($fields['password'])
         ]);
 
@@ -39,7 +41,7 @@ class AuthController extends Controller
         return response($response,201);
     }
 
-
+    
 
 
 
