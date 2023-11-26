@@ -41,7 +41,34 @@ class AuthController extends Controller
         return response($response,201);
     }
 
-    
+    //login function
+    public function login(Request $request){
+        $fields=$request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string'
+        ]);
+
+        //check username
+        $user = User::where('username',$fields['username'])->first();
+
+        //check password
+        if( !$user || !Hash::check($fields['password'],$user->password)){
+            return response([
+                'message' => 'Invalid Credentials'
+            ],401);
+        }
+
+        //create token
+        $token = $user->createToken('usertoken')->plainTextToken;
+
+        //passing user information
+        $response=[
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response,201);
+    }
 
 
 
