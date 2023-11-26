@@ -29,3 +29,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //public routes
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
+
+//protected routes
+Route::group(['middleware' => ['auth:sanctum']],function(){
+    Route::post('/logout',[AuthController::class,'logout']);
+});
