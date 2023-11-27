@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 //added code
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\TaskController;
 //added code
 
 /*
@@ -20,17 +20,17 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
-
 //public routes
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
+
 //protected routes
 Route::group(['middleware' => ['auth:sanctum']],function(){
     Route::post('/logout',[AuthController::class,'logout']);
+    Route::post('/tasks',[TaskController::class,'store']);
+});
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
