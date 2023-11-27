@@ -59,6 +59,11 @@ class TaskController extends Controller
     public function destroy(string $id)
     {
         //added code
+        if(!$id){
+            return [
+                'message' => 'Item Not Found'
+            ];
+        }
         return Task::destroy($id);
         //added code
     }
