@@ -23,7 +23,7 @@ use App\Http\Controllers\TaskController;
 //public routes
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
-
+Route::get('/tasks',[TaskController::class,'index']);
 
 //protected routes
 Route::group(['middleware' => ['auth:sanctum']],function(){

@@ -13,7 +13,9 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        
+        //added code
+        return Task::all();
+        //added code
     }
 
     /**
