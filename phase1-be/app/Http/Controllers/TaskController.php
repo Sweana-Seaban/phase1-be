@@ -46,7 +46,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //added code
+        $task=Task::find($id);
+        $task->update($request->all());
+        return $task;
+        //added code
     }
 
     /**
