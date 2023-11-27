@@ -17,12 +17,23 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    //added code
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'username',
         'email',
         'password',
     ];
 
+    public function posts()
+    {
+        return $this->hasMany('App\Task');
+    }
+
+    //added code
+    
     /**
      * The attributes that should be hidden for serialization.
      *
